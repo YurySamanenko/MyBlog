@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 2%;
+        }
+
+        .outline {
+            border: 1px solid black;
+            padding: 0 10px;
+            width: 350px;
+        }
+        .btn-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 17px;
+        white-space: normal; /* восстанавливаем свойству значение по умолчанию */
+}
+    </style>
+</head>
+<body>
+<h1>Posts:</h1>
+
+{% for post in posts %}
+    <div class="outline">
+        <a href="{% url 'post_detail' post.id %}" class="element-name">{{ post.name }}</a><br>
+        <b>{{ post.text }}</b>
+        <h5>Likes: {{ post.likes_count }}</h5>
+        <form action="{% url 'like_post' topic_id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" value="{{ post.id }}" name="post_id" class="btn btn-info btn-circle">
+                <i class="fa fa-heart" aria-hidden="true"></i> Like
+            </button>
+            <br>
+            <br>
+
+        </form>
+    </div>
+    <br>
+{% endfor %}
+
+<br/><br/>
+<hr>
+<br/>
+<br>
+<button class="btn btn-success">
+    <a style="color: white" href="add_post">Create post</a>
+</button>
+<br>
+<button class="btn btn-success">
+    <a style="color: white" href="http://127.0.0.1:8000/">Back</a>
+</button>
+</body>
+</html>

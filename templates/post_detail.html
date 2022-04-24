@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">#}
+{#    <link rel="stylesheet" href="{% static 'blog.css' %}">#}
+</head>
+<br>
+<div class="body-container">
+    <div class="element-name">{{ post.name }}</div>
+    <b>{{ post.text }}</b>
+</div>
+<br></br>
+<h2>Comments...</h2>
+
+{% if not post.comments.all %}
+    No Comments Yet...
+    <br/><br/>
+{% else %}
+    {% for comment in post.comments.all %}
+        <strong>{{ comment.text }}</strong>
+        {{ comment.rating }}
+        <br/><br/>
+    {% endfor %}
+    <br/><br/>
+
+{% endif %}
+
+<button class="btn btn-success">
+    <a href="create_comment">Create comment</a>
+</button>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 2%;
+        }
+        .outline {
+            border: 1px solid black;
+            padding: 0 10px;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="color: DarkViolet">My Site Blog:</h1>
+{% for topic in topics %}
+    <div class="outline">
+    <h2 style="color: maroon">{{ topic.name }}</h2>
+        <a style="color: black" href="{% url 'posts' pk=topic.id %}">{{ topic.title }}</a></div>
+    <br>
+{% endfor %}
+<br>
+<br>
+<button class="btn btn-success">
+    <a style="color: white" href="create_topic">Create topic</a>
+</button>
+<button class="btn btn-success">
+    <a style="color: white" href="register">Register</a>
+</button>
+
+</body>
+</html>
